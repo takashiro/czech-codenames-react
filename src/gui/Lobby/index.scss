@@ -1,0 +1,20 @@
+
+%form-input {
+	display: block;
+	margin: 20px auto;
+	box-sizing: border-box;
+	width: 10em;
+	line-height: 2.5em;
+	font-size: 14pt;
+	text-align: center;
+}
+
+.lobby {
+	button {
+		@extend %form-input;
+	}
+
+	input {
+		@extend %form-input;
+	}
+}

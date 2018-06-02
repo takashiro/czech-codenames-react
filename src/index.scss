@@ -1,0 +1,48 @@
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #fbfcfe;
+}
+
+body,
+input,
+textarea,
+button {
+	font-family: 'Microsoft YaHei', 'SimHei', 'Arial';
+}
+
+ul,
+ol {
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	list-style: none;
+}
+
+footer {
+	font-size: 8pt;
+	text-align: right;
+	margin: 10px 20px;
+	color: gray;
+
+	p {
+		margin: 0.2em 0;
+	}
+
+	ul.dev-info {
+		text-transform: uppercase;
+
+		li {
+			display: inline;
+			margin-left: 0.4em;
+
+			a {
+				color: darkgray;
+				text-decoration: none;
+			}
+		}
+	}
+}

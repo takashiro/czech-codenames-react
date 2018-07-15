@@ -1,37 +1,98 @@
+%assassin-dark {
+	background: black;
+	border: white 1px solid;
+	color: white;
+}
+
+%assassin-light {
+	background: rgb(175, 175, 175);
+	border: rgb(150, 150, 150) 1px solid;
+	color: rgb(32, 32, 32);
+	font-size: 9pt;
+}
+
+%red-dark {
+	background: rgb(209, 54, 54);
+	border: #e6ab8f 1px solid;
+	color: white;
+}
+
+%red-light {
+	background: white;
+	border: #e6ab8f 1px solid;
+	color: rgb(207, 17, 17);
+}
+
+%blue-dark {
+	background: rgb(49, 82, 143);
+	border: #bcc9f1 1px solid;
+	color: white;
+}
+
+%blue-light {
+	background: white;
+	border: #bcc9f1 1px solid;
+	color: rgb(30, 85, 185);
+}
+
+%yellow-dark {
+	background: rgb(240, 222, 142);
+	color: #543304;
+}
+
+
+%yellow-light {
+	background:white;
+	color: #f19617;
+	border: rgb(255, 196, 0) 1px solid;
+	font-size: 9pt;
+}
 
 .name-card {
 	width: 60px;
-	height: 48px;
-	line-height: 48px;
+	line-height: 1em;
+	padding: 18px 0;
 	text-align: center;
 	border-radius: 5px;
 	background: #efefef;
 	border: white 1px solid;
 	box-shadow: #543304 1px 1px 2px 0;
-	margin: 1px;
 	font-size: 10pt;
 	font-family: 'Microsoft Yahei', 'SimHei', 'Arial';
 
 	&.assassin {
-		background: black;
-		border: white 1px solid;
-		color: white;
+		@extend %assassin-dark;
 	}
 
 	&.red {
-		background: rgb(209, 54, 54);
-		border: #e6ab8f 1px solid;
-		color: white;
+		@extend %red-dark;
 	}
 
 	&.blue {
-		background: rgb(49, 82, 143);
-		border: #bcc9f1 1px solid;
-		color: white;
+		@extend %blue-dark;
 	}
 
 	&.yellow {
-		background: rgb(248, 255, 156);
-		color: #543304;
+		@extend %yellow-dark;
+	}
+}
+
+.owner {
+	.name-card.flipped {
+		&.assassin {
+			@extend %assassin-light;
+		}
+
+		&.red {
+			@extend %red-light;
+		}
+
+		&.blue {
+			@extend %blue-light;
+		}
+
+		&.yellow {
+			@extend %yellow-light;
+		}
 	}
 }

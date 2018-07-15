@@ -33,15 +33,17 @@ class GameBoard extends React.Component {
 			const cells = new Array(this.columnNum);
 			for (let j = 0; j < cells.length; j++) {
 				let card = cards[k];
-				cells[j] = card ? <td key={j}>
-					<NameCard room={room} card={card}>{names[k]}</NameCard>
-				</td> : null;
+				cells[j] = card ? <NameCard key={j} room={room} card={card}>{names[k]}</NameCard> : null;
 				k++;
 			}
 			rows[i] = <tr key={i}>{cells}</tr>;
 		}
 
-		return <table className="game-board">
+		let className = 'game-board';
+		if (room.isOwner) {
+			className += ' owner';
+		}
+		return <table className={className}>
 			<tbody>
 				{rows}
 			</tbody>

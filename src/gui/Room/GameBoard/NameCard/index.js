@@ -29,6 +29,10 @@ class NameCard extends React.Component {
 		}
 
 		const room = this.props.room;
+		if (room.isOwner) {
+			return;
+		}
+
 		const card = this.props.card;
 		room.flipCard(card);
 	}
@@ -42,10 +46,14 @@ class NameCard extends React.Component {
 			}
 		}
 
+		if (this.state.flipped) {
+			className.push('flipped');
+		}
+
 		className = className.join(' ');
-		return <div className={className} onClick={this.handleClick}>
+		return <td className={className} onClick={this.handleClick}>
 			<span className="name">{this.props.children}</span>
-		</div>;
+		</td>;
 	}
 
 }

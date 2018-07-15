@@ -12,6 +12,20 @@ class Room extends React.Component {
 		super(props);
 	}
 
+	componentDidMount() {
+		let room = this.props.room;
+		if (!room) {
+			return;
+		}
+
+		if (room.isOwner) {
+			room.load()
+			.then(function () {
+				room.refreshNameCards();
+			});
+		}
+	}
+
 	render() {
 		return <div className="room">
 			<div className="current-state">红方行动</div>

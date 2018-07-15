@@ -39,6 +39,10 @@ class Room extends EventEmitter {
 		bindEvents.call(this, client);
 	}
 
+	load() {
+		return this.client.request(cmd.LoadGame, 'codenames');
+	}
+
 	refreshNameCards() {
 		this.client.send(cmd.RefreshNameCards);
 	}

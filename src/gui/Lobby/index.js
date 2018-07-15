@@ -9,13 +9,6 @@ import GameRoom from '../../game/Room';
 
 import './index.scss';
 
-function enterRoom(room) {
-	ReactDOM.render(
-		<Room room={room} />,
-		document.getElementById('root')
-	);
-}
-
 class Lobby extends React.Component {
 
 	constructor(props) {
@@ -35,13 +28,17 @@ class Lobby extends React.Component {
 		client.request(net.CreateRoom)
 		.then(id => {
 			let room = new GameRoom(client, id);
-			enterRoom(room);
+			room.isOwner = true;
+			ReactDOM.render(
+				<Room room={room} />,
+				document.getElementById('root')
+			);
 		});
 	}
 
 	enterRoom() {
 		const client = this.props.client;
-		if (!window.client) {
+		if (!client) {
 			return Toast.makeToast('服务器连接失败。');
 		}
 
@@ -60,7 +57,10 @@ class Lobby extends React.Component {
 		client.request(net.EnterRoom, room_number)
 		.then(id => {
 			let room = new GameRoom(client, id);
-			enterRoom(room);
+			ReactDOM.render(
+				<Room room={room} />,
+				document.getElementById('root')
+			);
 		});
 	}
 

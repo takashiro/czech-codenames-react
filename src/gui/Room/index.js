@@ -21,15 +21,23 @@ class Room extends React.Component {
 		if (room.isOwner) {
 			room.load()
 			.then(function () {
-				room.refreshNameCards();
+				return room.refreshNameCards();
+			})
+			.then(function () {
+				return room.fetchColors();
 			});
+		} else {
+			room.fetchNames();
 		}
 	}
 
 	render() {
+		let room = this.props.room;
+
 		return <div className="room">
-			<div className="current-state">红方行动</div>
-			<GameBoard room={this.props.room} />
+			<div className="info">房间号 {room.id}</div>
+			<div className="current-state"></div>
+			<GameBoard room={room} />
 			<div className="score-panel">
 				<ScoreBoard title="红色阵营" />
 				<ScoreBoard title="蓝色阵营" />

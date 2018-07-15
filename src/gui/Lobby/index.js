@@ -47,7 +47,7 @@ class Lobby extends React.Component {
 			return;
 		}
 
-		let room_number = parseInt(room_input, 10);
+		let room_number = parseInt(room_input.value, 10);
 		if (isNaN(room_number) || room_number <= 0) {
 			room_input.value = '';
 			room_input.focus();

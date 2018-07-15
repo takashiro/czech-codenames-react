@@ -6,7 +6,7 @@ import NameCard from './NameCard';
 
 function bindEvents(client) {
 	client.bind(cmd.FetchNames, names => {
-		let cards = names.map(name => new NameCard(name));
+		let cards = names.map((name, index) => new NameCard(index, name));
 		this.cards = cards;
 		this.emit('cardChanged', cards);
 	});
@@ -19,10 +19,14 @@ function bindEvents(client) {
 	});
 
 	client.bind(cmd.FlipCard, info => {
-		if (info && info.index) {
+		if (info && info.index >= 0) {
 			let card = this.cards[info.index];
 			if (card) {
 				card.setColor(info.color);
+				card.setFlipped(true);
+			} else {
+				card.setColor(0);
+				card.setFlipped(false);
 			}
 		}
 	});
@@ -44,19 +48,19 @@ class Room extends EventEmitter {
 	}
 
 	refreshNameCards() {
-		this.client.send(cmd.RefreshNameCards);
+		return this.client.request(cmd.RefreshNameCards);
 	}
 
 	fetchNames() {
-		this.client.send(cmd.FetchNames);
+		return this.client.request(cmd.FetchNames);
 	}
 
 	fetchColors() {
-		this.client.send(cmd.FetchColors);
+		return this.client.request(cmd.FetchColors);
 	}
 
-	flipCard(index) {
-		this.client.send(cmd.FlipCard, index);
+	flipCard(card) {
+		this.client.send(cmd.FlipCard, card.index);
 	}
 
 }

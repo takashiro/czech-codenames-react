@@ -24,15 +24,18 @@ class GameBoard extends React.Component {
 
 	render() {
 		const names = this.state.names;
+		const room = this.props.room;
+		const cards = room.cards;
 
 		const rows = new Array(this.rowNum);
 		let k = 0;
 		for (let i = 0; i < rows.length; i++) {
 			const cells = new Array(this.columnNum);
 			for (let j = 0; j < cells.length; j++) {
-				cells[j] = <td key={j}>
-					<NameCard>{names[k]}</NameCard>
-				</td>;
+				let card = cards[k];
+				cells[j] = card ? <td key={j}>
+					<NameCard room={room} card={card}>{names[k]}</NameCard>
+				</td> : null;
 				k++;
 			}
 			rows[i] = <tr key={i}>{cells}</tr>;

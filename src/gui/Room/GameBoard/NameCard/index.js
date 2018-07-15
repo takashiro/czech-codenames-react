@@ -3,34 +3,43 @@ import React from 'react';
 
 import './index.scss';
 
-const COLORS = ['', 'red', 'blue', 'yellow', 'assassin'];
+const COLORS = ['assassin', 'red', 'blue', 'yellow'];
 
 class NameCard extends React.Component {
 
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			uncovered: !!props.unclovered
-		};
-
 		this.handleClick = this.handleClick.bind(this);
+
+		const card = this.props.card;
+		this.state = {
+			color: card.color,
+			flipped: card.flipped,
+		};
+		card.on('colorChanged', color => this.setState({color}));
+		card.on('flip', flipped => this.setState({flipped}));
 	}
 
 	handleClick(e) {
 		e.preventDefault();
+
+		if (this.state.flipped) {
+			return;
+		}
+
+		const room = this.props.room;
+		const card = this.props.card;
+		room.flipCard(card);
 	}
 
 	render() {
 		let className = ['name-card'];
-		if (this.props.color) {
-			let color = COLORS[this.props.color];
+		if (this.state.color >= 0) {
+			let color = COLORS[this.state.color];
 			if (color) {
 				className.push(color);
 			}
-		}
-		if (this.state.uncovered) {
-			className.push('uncovered');
 		}
 
 		className = className.join(' ');

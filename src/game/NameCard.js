@@ -3,9 +3,10 @@ import EventEmitter from 'events';
 
 class NameCard extends EventEmitter {
 
-	constructor(name) {
+	constructor(index, name) {
 		super();
 
+		this.index = index;
 		this.name = name;
 		this.color = undefined;
 		this.flipped = false;

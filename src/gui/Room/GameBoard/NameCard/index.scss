@@ -5,11 +5,33 @@
 	line-height: 48px;
 	text-align: center;
 	border-radius: 5px;
-	border: #ead4b6 1px solid;
-	background: #ebdac2;
+	background: #efefef;
+	border: white 1px solid;
 	box-shadow: #543304 1px 1px 2px 0;
 	margin: 1px;
 	font-size: 10pt;
 	font-family: 'Microsoft Yahei', 'SimHei', 'Arial';
-	color: #543304;
+
+	&.assassin {
+		background: black;
+		border: white 1px solid;
+		color: white;
+	}
+
+	&.red {
+		background: rgb(209, 54, 54);
+		border: #e6ab8f 1px solid;
+		color: white;
+	}
+
+	&.blue {
+		background: rgb(49, 82, 143);
+		border: #bcc9f1 1px solid;
+		color: white;
+	}
+
+	&.yellow {
+		background: rgb(248, 255, 156);
+		color: #543304;
+	}
 }

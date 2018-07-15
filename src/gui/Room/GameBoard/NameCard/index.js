@@ -3,7 +3,7 @@ import React from 'react';
 
 import './index.scss';
 
-const COLORS = ['assassin', 'red', 'blue', 'yellow'];
+import Color from '../../../../game/Color';
 
 class NameCard extends React.Component {
 
@@ -34,15 +34,18 @@ class NameCard extends React.Component {
 		}
 
 		const card = this.props.card;
+		if (card.flipped) {
+			return;
+		}
 		room.flipCard(card);
 	}
 
 	render() {
 		let className = ['name-card'];
 		if (this.state.color >= 0) {
-			let color = COLORS[this.state.color];
+			let color = Color.fromNum(this.state.color);
 			if (color) {
-				className.push(color);
+				className.push(color.toLowerCase());
 			}
 		}
 

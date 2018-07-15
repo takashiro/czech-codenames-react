@@ -10,6 +10,7 @@ const cmd = new Enum(
 	'FetchColors',
 	'FlipCard',
 	'FetchFlippedCards',
+	'FetchConfig',
 );
 
 export default cmd;

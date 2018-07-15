@@ -24,11 +24,15 @@ function bindEvents(client) {
 			if (card) {
 				card.setColor(info.color);
 				card.setFlipped(true);
+				this.emit('cardFlipped', card);
 			} else {
-				card.setColor(0);
-				card.setFlipped(false);
+				alert('Error: No card is found.');
 			}
 		}
+	});
+
+	client.bind(cmd.FetchConfig, config => {
+		this.setConfig(config);
 	});
 }
 
@@ -40,11 +44,17 @@ class Room extends EventEmitter {
 		this.client = client;
 		this.id = id;
 		this.cards = [];
+		this.config = [];
 		bindEvents.call(this, client);
 	}
 
 	load() {
 		return this.client.request(cmd.LoadGame, 'codenames');
+	}
+
+	setConfig(config) {
+		this.config = config;
+		this.emit('configChanged', config);
 	}
 
 	refreshNameCards() {
@@ -65,6 +75,10 @@ class Room extends EventEmitter {
 
 	fetchFlippedCards() {
 		this.client.send(cmd.FetchFlippedCards);
+	}
+
+	fetchConfig() {
+		return this.client.request(cmd.FetchConfig);
 	}
 
 }

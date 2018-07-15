@@ -2,7 +2,8 @@
 body {
 	margin: 0;
 	padding: 0;
-	background: #fbfcfe;
+	background: #06141d url(../style/pirates.jpg) no-repeat;
+	background-size: 100% auto;
 }
 
 body,
@@ -22,11 +23,25 @@ li {
 	list-style: none;
 }
 
+header {
+	padding: 30px 0 20px 0;
+	h1 {
+		text-align: center;
+		img {
+			width: 65%;
+		}
+	}
+}
+
+#root {
+	min-height:320px;
+}
+
 footer {
 	font-size: 8pt;
 	text-align: right;
 	margin: 10px 20px;
-	color: gray;
+	color: lightgray;
 
 	p {
 		margin: 0.2em 0;
@@ -40,7 +55,7 @@ footer {
 			margin-left: 0.4em;
 
 			a {
-				color: darkgray;
+				color: #ddd;
 				text-decoration: none;
 			}
 		}

@@ -27,7 +27,10 @@ class Room extends React.Component {
 				return room.fetchColors();
 			});
 		} else {
-			room.fetchNames();
+			room.fetchNames()
+			.then(function () {
+				return room.fetchFlippedCards();
+			});
 		}
 	}
 

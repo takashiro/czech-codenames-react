@@ -63,6 +63,10 @@ class Room extends EventEmitter {
 		this.client.send(cmd.FlipCard, card.index);
 	}
 
+	fetchFlippedCards() {
+		this.client.send(cmd.FetchFlippedCards);
+	}
+
 }
 
 export default Room;

@@ -1,5 +1,7 @@
 
 .room {
+	position: relative;
+
 	.info {
 		color: white;
 		text-align: center;
@@ -13,6 +15,10 @@
 	}
 
 	.score-panel {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
 		display: flex;
 
 		.score-board {

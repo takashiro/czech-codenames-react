@@ -39,12 +39,12 @@ class Room extends React.Component {
 
 		return <div className="room">
 			<div className="info">房间号 {room.id}</div>
-			<div className="current-state"></div>
-			<GameBoard room={room} />
 			<div className="score-panel">
 				<ScoreBoard title="红色阵营" />
 				<ScoreBoard title="蓝色阵营" />
 			</div>
+			<div className="current-state"></div>
+			<GameBoard room={room} />
 		</div>;
 	}
 

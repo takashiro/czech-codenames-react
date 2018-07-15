@@ -1,9 +1,15 @@
 
 .score-board {
 	text-align: center;
+	color: white;
+	font-size: 9pt;
+
+	h4 {
+		margin: 3px 0;
+	}
 
 	.score {
-		margin: 1em auto;
+		margin: 0.3em auto;
 		display: block;
 	}
 }

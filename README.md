@@ -1,7 +1,7 @@
 Codenames
 ==========
 
-| Example Page |    http://codenames.takashiro.me       |
+| Example Page |    http://codenames.takashiro.cn      |
 |--------------|---------------------------------------|
 | Author       |           Kazuichi Takashiro          |
 

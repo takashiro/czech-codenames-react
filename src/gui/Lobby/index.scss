@@ -5,8 +5,11 @@
 	box-sizing: border-box;
 	width: 10em;
 	line-height: 2.5em;
+	height: 2.5em;
 	font-size: 14pt;
 	text-align: center;
+	border: rgb(153, 153, 153) 1px solid;
+	border-radius: 2px;
 }
 
 .lobby {
@@ -14,10 +17,12 @@
 
 	button {
 		@extend %form-input;
+		background: rgb(226, 226, 226);
 	}
 
 	input {
 		@extend %form-input;
+		background: white;
 	}
 
 	.create-panel {

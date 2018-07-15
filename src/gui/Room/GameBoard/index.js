@@ -13,14 +13,16 @@ class GameBoard extends React.Component {
 		this.rowNum = props.row ? props.row : 5;
 		this.columnNum = props.column ? props.column : 5;
 
+		const room = this.props.room;
 		this.state = {
-			names: [],
-			colors: [],
+			names: room.cards.map(card => card.name),
 		};
+		room.on('cardChanged', cards => {
+			this.setState({ names: cards.map(card => card.name) });
+		});
 	}
 
 	render() {
-		const colors = this.state.colors;
 		const names = this.state.names;
 
 		const rows = new Array(this.rowNum);
@@ -29,7 +31,7 @@ class GameBoard extends React.Component {
 			const cells = new Array(this.columnNum);
 			for (let j = 0; j < cells.length; j++) {
 				cells[j] = <td key={j}>
-					<NameCard color={colors[k]}>{names[k]}</NameCard>
+					<NameCard>{names[k]}</NameCard>
 				</td>;
 				k++;
 			}

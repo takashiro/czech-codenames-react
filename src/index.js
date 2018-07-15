@@ -12,7 +12,14 @@ function showMessage(message) {
 	box.innerHTML = message;
 }
 
-let client = new Client('ws://localhost:2517');
+let ws_url = 'ws://localhost:2517';
+if (location.href.startsWith('https://')) {
+	let url = location.href.match(/^\w+:\/\/(.*?)\//i);
+	let domain = url && url[1];
+	ws_url = 'wss://' + domain + '/karuta/';
+}
+
+let client = new Client(ws_url);
 client.connect()
 .then(function () {
 	showMessage('');

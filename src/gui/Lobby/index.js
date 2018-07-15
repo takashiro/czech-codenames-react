@@ -56,11 +56,17 @@ class Lobby extends React.Component {
 
 		client.request(net.EnterRoom, room_number)
 		.then(id => {
-			let room = new GameRoom(client, id);
-			ReactDOM.render(
-				<Room room={room} />,
-				document.getElementById('root')
-			);
+			if (id && id >= 0) {
+				let room = new GameRoom(client, id);
+				ReactDOM.render(
+					<Room room={room} />,
+					document.getElementById('root')
+				);
+			} else {
+				room_input.value = '';
+				room_input.focus();
+				Toast.makeToast('该房间不存在。');
+			}
 		});
 	}
 

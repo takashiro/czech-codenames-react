@@ -1,0 +1,15 @@
+
+.room {
+	.current-state {
+		text-align: center;
+		line-height: 2em;
+	}
+
+	.score-panel {
+		display: flex;
+
+		.score-board {
+			flex: 1 1 auto;
+		}
+	}
+}

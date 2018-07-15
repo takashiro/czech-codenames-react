@@ -10,6 +10,8 @@
 }
 
 .lobby {
+	margin-top: 50px;
+
 	button {
 		@extend %form-input;
 	}

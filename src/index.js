@@ -19,16 +19,18 @@ if (location.href.startsWith('https://')) {
 	ws_url = 'wss://' + domain + '/karuta/';
 }
 
-let client = new Client(ws_url);
-client.connect()
-.then(function () {
-	showMessage('');
+(async function () {
+	const client = new Client(ws_url);
+	try {
+		await client.connect();
+	} catch (error) {
+		showMessage('连接服务器失败。');
+		return;
+	}
 
+	showMessage('');
 	ReactDOM.render(
 		<Lobby client={client} />,
 		document.getElementById('root')
 	);
-})
-.catch(() => {
-	showMessage('连接服务器失败。');
-});
+})();

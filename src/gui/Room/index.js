@@ -16,28 +16,20 @@ class Room extends React.Component {
 		this.refreshNameCards = this.refreshNameCards.bind(this);
 	}
 
-	componentDidMount() {
+	async componentDidMount() {
 		let room = this.props.room;
 		if (!room) {
 			return;
 		}
 
 		if (room.isOwner) {
-			room.load()
-			.then(function () {
-				return room.refreshNameCards();
-			})
-			.then(function () {
-				return room.fetchColors();
-			});
+			await room.load();
+			await room.refreshNameCards();
+			await room.fetchColors();
 		} else {
-			room.fetchNames()
-			.then(function () {
-				return room.fetchConfig();
-			})
-			.then(function () {
-				return room.fetchFlippedCards();
-			});
+			await room.fetchNames();
+			await room.fetchConfig();
+			await room.fetchFlippedCards();
 		}
 	}
 

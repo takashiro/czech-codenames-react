@@ -6,7 +6,7 @@
   "scripts": {
     "debug": "webpack -d --watch",
     "build": "webpack",
-    "test": "webpack"
+    "test": "eslint src && webpack"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,8 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "eslint": "^6.0.1",
+    "eslint-plugin-react": "^7.14.2",
     "mini-css-extract-plugin": "^0.4.5",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",

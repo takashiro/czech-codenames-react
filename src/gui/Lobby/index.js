@@ -18,25 +18,23 @@ class Lobby extends React.Component {
 		this.enterRoom = this.enterRoom.bind(this);
 	}
 
-	createRoom() {
+	async createRoom() {
 		const client = this.props.client;
 
 		if (!client) {
 			return Toast.makeToast('服务器连接失败。');
 		}
 
-		client.request(net.CreateRoom)
-		.then(id => {
-			let room = new GameRoom(client, id);
-			room.isOwner = true;
-			ReactDOM.render(
-				<Room room={room} />,
-				document.getElementById('root')
-			);
-		});
+		const id = await client.request(net.CreateRoom);
+		const room = new GameRoom(client, id);
+		room.isOwner = true;
+		ReactDOM.render(
+			<Room room={room} />,
+			document.getElementById('root')
+		);
 	}
 
-	enterRoom() {
+	async enterRoom() {
 		const client = this.props.client;
 		if (!client) {
 			return Toast.makeToast('服务器连接失败。');
@@ -54,20 +52,18 @@ class Lobby extends React.Component {
 			return Toast.makeToast('请输入正确的房间号。');
 		}
 
-		client.request(net.EnterRoom, room_number)
-		.then(id => {
-			if (id && id >= 0) {
-				let room = new GameRoom(client, id);
-				ReactDOM.render(
-					<Room room={room} />,
-					document.getElementById('root')
-				);
-			} else {
-				room_input.value = '';
-				room_input.focus();
-				Toast.makeToast('该房间不存在。');
-			}
-		});
+		const id = await client.request(net.EnterRoom, room_number);
+		if (id && id >= 0) {
+			const room = new GameRoom(client, id);
+			ReactDOM.render(
+				<Room room={room} />,
+				document.getElementById('root')
+			);
+		} else {
+			room_input.value = '';
+			room_input.focus();
+			Toast.makeToast('该房间不存在。');
+		}
 	}
 
 	render() {

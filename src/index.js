@@ -8,7 +8,7 @@ import Client from './net/Client';
 import './index.scss';
 
 function showMessage(message) {
-	var box = document.getElementById('message-box');
+	const box = document.getElementById('message-box');
 	box.innerHTML = message;
 }
 

@@ -49,7 +49,6 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							url: false,
-							minimize: mode === 'production',
 							sourceMap: mode === 'development',
 						}
 					},

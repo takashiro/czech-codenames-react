@@ -15,17 +15,16 @@ class GameBoard extends React.Component {
 
 		const room = this.props.room;
 		this.state = {
-			names: room.cards.map(card => card.name),
+			cards: room.cards,
 		};
 		room.on('cardChanged', cards => {
-			this.setState({ names: cards.map(card => card.name) });
+			this.setState({ cards });
 		});
 	}
 
 	render() {
-		const names = this.state.names;
+		const cards = this.state.cards;
 		const room = this.props.room;
-		const cards = room.cards;
 
 		const rows = new Array(this.rowNum);
 		let k = 0;
@@ -33,7 +32,7 @@ class GameBoard extends React.Component {
 			const cells = new Array(this.columnNum);
 			for (let j = 0; j < cells.length; j++) {
 				let card = cards[k];
-				cells[j] = card ? <NameCard key={j} room={room} card={card}>{names[k]}</NameCard> : null;
+				cells[j] = card ? <NameCard key={card.key} room={room} card={card}>{card.name}</NameCard> : null;
 				k++;
 			}
 			rows[i] = <tr key={i}>{cells}</tr>;

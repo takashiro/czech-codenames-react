@@ -6,6 +6,7 @@ class NameCard extends EventEmitter {
 	constructor(index, name) {
 		super();
 
+		this.key = Math.random() * 0x7FFFFFFF;
 		this.index = index;
 		this.name = name;
 		this.color = undefined;

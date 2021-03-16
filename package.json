@@ -25,15 +25,14 @@
   },
   "homepage": "https://github.com/takashiro/czech-codenames#readme",
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "eslint": "^6.0.1",
     "eslint-plugin-react": "^7.14.2",
     "mini-css-extract-plugin": "^0.4.5",
     "sass": "^1.32.8",
     "sass-loader": "^7.1.0",
+    "ts-loader": "^8.0.18",
+    "typescript": "^4.2.3",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6"
   },

@@ -12,7 +12,7 @@ function showMessage(message) {
 	box.innerHTML = message;
 }
 
-let ws_url = 'ws://localhost:2517';
+let ws_url = 'ws://localhost:5260';
 if (location.href.startsWith('https://')) {
 	let url = location.href.match(/^\w+:\/\/(.*?)\//i);
 	let domain = url && url[1];

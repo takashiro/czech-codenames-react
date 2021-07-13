@@ -12,7 +12,6 @@ module.exports = {
 	mode: mode,
 	entry: {
 		app: './src/index.js',
-		vendor: Object.keys(pkg.dependencies),
 	},
 	output: {
 		filename: '[name].js',
@@ -55,7 +54,6 @@ module.exports = {
 					{
 						loader: 'sass-loader',
 						options: {
-							url: false,
 							sourceMap: mode === 'development',
 						}
 					},

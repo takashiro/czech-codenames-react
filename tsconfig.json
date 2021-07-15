@@ -6,7 +6,8 @@
 		"moduleResolution": "node",
 		"esModuleInterop": true,
 		"allowJs": true,
-		"jsx": "react"
+		"jsx": "react",
+		"sourceMap": true
 	},
 	"include": [
 		"src"

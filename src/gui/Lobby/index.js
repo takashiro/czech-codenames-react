@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Toast from '../component/Toast';
+import { makeToast } from '../component/Toast';
 import Room from '../Room';
 import net from '../../protocol';
 import GameRoom from '../../game/Room';
@@ -22,7 +22,7 @@ class Lobby extends React.Component {
 		const client = this.props.client;
 
 		if (!client) {
-			return Toast.makeToast('服务器连接失败。');
+			return makeToast('服务器连接失败。');
 		}
 
 		const id = await client.request(net.CreateRoom);
@@ -37,7 +37,7 @@ class Lobby extends React.Component {
 	async enterRoom() {
 		const client = this.props.client;
 		if (!client) {
-			return Toast.makeToast('服务器连接失败。');
+			return makeToast('服务器连接失败。');
 		}
 
 		let room_input = document.getElementById('room-number');
@@ -49,7 +49,7 @@ class Lobby extends React.Component {
 		if (isNaN(room_number) || room_number <= 0) {
 			room_input.value = '';
 			room_input.focus();
-			return Toast.makeToast('请输入正确的房间号。');
+			return makeToast('请输入正确的房间号。');
 		}
 
 		const id = await client.request(net.EnterRoom, room_number);
@@ -62,7 +62,7 @@ class Lobby extends React.Component {
 		} else {
 			room_input.value = '';
 			room_input.focus();
-			Toast.makeToast('该房间不存在。');
+			makeToast('该房间不存在。');
 		}
 	}
 

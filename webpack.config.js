@@ -1,24 +1,22 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const pkg = require('./package.json');
-
 let mode = 'production';
 if (process.env.NODE_ENV === 'development') {
 	mode = 'development';
 }
 
 module.exports = {
-	mode: mode,
+	mode,
 	entry: {
 		app: './src/index.js',
 	},
 	output: {
 		filename: '[name].js',
-		path: path.resolve(__dirname, 'dist/static')
+		path: path.resolve(__dirname, 'dist/static'),
 	},
 	resolveLoader: {
-		modules: [path.resolve(__dirname, 'node_modules')]
+		modules: [path.resolve(__dirname, 'node_modules')],
 	},
 	optimization: {
 		splitChunks: {
@@ -27,17 +25,17 @@ module.exports = {
 					test: /[\\/]node_modules[\\/]/,
 					name: 'vendor',
 					enforce: true,
-					chunks: 'all'
-				}
-			}
-		}
+					chunks: 'all',
+				},
+			},
+		},
 	},
 	module: {
 		rules: [
 			{
 				test: /\.[tj]s$/,
 				exclude: /node_modules/,
-				use: 'ts-loader'
+				use: 'ts-loader',
 			},
 			{
 				test: /\.scss$/,
@@ -49,23 +47,23 @@ module.exports = {
 						options: {
 							url: false,
 							sourceMap: mode === 'development',
-						}
+						},
 					},
 					{
 						loader: 'sass-loader',
 						options: {
 							sourceMap: mode === 'development',
-						}
+						},
 					},
 				],
-			}
-		]
+			},
+		],
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css',
 			chunkFilename: '[id].css',
-		})
+		}),
 	],
 	devtool: mode === 'production' ? undefined : 'source-map',
 };

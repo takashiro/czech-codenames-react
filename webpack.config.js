@@ -67,5 +67,9 @@ module.exports = function config(env, argv) {
 			}),
 		],
 		devtool: mode === 'production' ? undefined : 'source-map',
+		devServer: {
+			contentBase: path.join(__dirname, 'dist'),
+			port: 5261,
+		},
 	};
 };

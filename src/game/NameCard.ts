@@ -6,19 +6,19 @@ let cardKey = 1;
 interface NameCard {
 	on(event: 'nameChanged', listener: (name: string) => void): this;
 	on(event: 'colorChanged', listener: (color: Color) => void): this;
-	on(event: 'flipped', listener: (flipped: boolean) => void): this;
+	on(event: 'revealed', listener: (revealed: boolean) => void): this;
 
 	once(event: 'nameChanged', listener: (name: string) => void): this;
 	once(event: 'colorChanged', listener: (color: Color) => void): this;
-	once(event: 'flipped', listener: (flipped: boolean) => void): this;
+	once(event: 'revealed', listener: (revealed: boolean) => void): this;
 
 	off(event: 'nameChanged', listener: (name: string) => void): this;
 	off(event: 'colorChanged', listener: (color: Color) => void): this;
-	off(event: 'flipped', listener: (flipped: boolean) => void): this;
+	off(event: 'revealed', listener: (revealed: boolean) => void): this;
 
 	emit(event: 'nameChanged', name: string): boolean;
 	emit(event: 'colorChanged', color: Color): boolean;
-	emit(event: 'flipped', flipped: boolean): boolean;
+	emit(event: 'revealed', revealed: boolean): boolean;
 }
 
 class NameCard extends EventEmitter {
@@ -30,7 +30,7 @@ class NameCard extends EventEmitter {
 
 	protected color = Color.Unknown;
 
-	protected flipped = false;
+	protected revealed = false;
 
 	constructor(index: number, name: string) {
 		super();
@@ -65,13 +65,13 @@ class NameCard extends EventEmitter {
 		this.emit('colorChanged', color);
 	}
 
-	isFlipped(): boolean {
-		return this.flipped;
+	isRevealed(): boolean {
+		return this.revealed;
 	}
 
-	setFlipped(flipped: boolean): void {
-		this.flipped = flipped;
-		this.emit('flipped', flipped);
+	setRevealed(revealed: boolean): void {
+		this.revealed = revealed;
+		this.emit('revealed', revealed);
 	}
 }
 

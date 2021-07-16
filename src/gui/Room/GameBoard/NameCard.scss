@@ -83,7 +83,7 @@
 }
 
 .owner {
-	.name-card.flipped {
+	.name-card.revealed {
 		&.assassin {
 			@extend %assassin-light;
 		}

@@ -18,17 +18,17 @@ export default function NameCard(props: NameCardProps): JSX.Element {
 
 	const [name, setName] = React.useState(card.getName());
 	const [color, setColor] = React.useState(card.getColor());
-	const [flipped, setFlipped] = React.useState(card.isFlipped());
+	const [revealed, setRevealed] = React.useState(card.isRevealed());
 
 	React.useEffect(() => {
 		card.on('nameChanged', setName);
 		card.on('colorChanged', setColor);
-		card.on('flipped', setFlipped);
+		card.on('revealed', setRevealed);
 
 		return (): void => {
 			card.off('nameChanged', setName);
 			card.off('colorChanged', setColor);
-			card.off('flipped', setFlipped);
+			card.off('revealed', setRevealed);
 		};
 	}, [card]);
 
@@ -63,8 +63,8 @@ export default function NameCard(props: NameCardProps): JSX.Element {
 		break;
 	}
 
-	if (flipped) {
-		classNames.push('flipped');
+	if (revealed) {
+		classNames.push('revealed');
 	}
 
 	return (

@@ -25,6 +25,17 @@ module.exports = {
 			'error',
 			'tab',
 		],
+		'import/extensions': [
+			'error',
+			{
+				extensions: [
+					'js',
+					'ts',
+					'tsx',
+				],
+			},
+		],
+		'import/no-unresolved': 'off',
 		'no-plusplus': 'off',
 		'no-tabs': 'off',
 		'no-use-before-define': 'off',
@@ -36,7 +47,19 @@ module.exports = {
 			'error',
 			{
 				extensions: ['js', 'tsx'],
-			}
+			},
 		],
+		'react/require-default-props': 'off',
+	},
+	settings: {
+		'import/resolver': {
+			node: {
+				extensions: [
+					'js',
+					'ts',
+					'tsx',
+				],
+			},
+		},
 	},
 };

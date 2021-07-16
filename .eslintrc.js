@@ -25,6 +25,7 @@ module.exports = {
 			'error',
 			'tab',
 		],
+		'no-plusplus': 'off',
 		'no-tabs': 'off',
 		'no-use-before-define': 'off',
 		'react/jsx-indent': [

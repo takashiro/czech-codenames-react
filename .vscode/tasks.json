@@ -6,7 +6,10 @@
 		{
 			"label": "Lint Current File",
 			"type": "shell",
-			"command": "npx eslint ${file}"
+			"command": "npx eslint ${file}",
+			"problemMatcher": [
+				"$eslint-stylish"
+			]
 		}
 	]
 }

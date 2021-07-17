@@ -8,20 +8,23 @@ import NameCardHandler from '../cmd/NameCardHandler';
 
 import NameCard from './NameCard';
 
-class Room extends BasicRoom<void> {
+class Room extends BasicRoom {
 	protected cards: NameCard[] = [];
 
-	prepare(): Promise<void> {
-		this.socket.on(new NameCardHandler(this.cards));
-		return this.loadDriver('@karuta/codenames');
+	prepare(): void {
+		this.client.on(new NameCardHandler(this.cards));
+	}
+
+	getNameCards(): NameCard[] {
+		return this.cards;
 	}
 
 	async refreshNameCards(): Promise<void> {
-		await this.socket.post(Context.NameCards);
+		await this.client.post(Context.NameCards);
 	}
 
-	async getNameCards(): Promise<Partial<CardModel>[]> {
-		const cards = await this.socket.get(Context.NameCards);
+	async fetchNameCards(): Promise<Partial<CardModel>[]> {
+		const cards = await this.client.get(Context.NameCards);
 		if (!Array.isArray(cards)) {
 			throw new Error('Unexpected cards. It should be an array.');
 		}
@@ -29,7 +32,7 @@ class Room extends BasicRoom<void> {
 	}
 
 	async flipCard(index: number): Promise<void> {
-		await this.socket.patch(Context.NameCard, index);
+		await this.client.patch(Context.NameCard, index);
 	}
 }
 

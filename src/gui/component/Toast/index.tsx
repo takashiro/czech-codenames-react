@@ -9,22 +9,31 @@ interface ToastProps {
 
 export default function Toast(props: ToastProps): JSX.Element {
 	const { message } = props;
-	const toast = React.useRef<HTMLDivElement>();
+	const toast = React.useRef<HTMLDivElement>(null);
 
 	React.useEffect(() => {
 		setTimeout(() => {
 			const e = toast.current;
+			if (!e) {
+				return;
+			}
 			e.classList.add('in');
 		}, 0);
 
 		setTimeout(() => {
 			const e = toast.current;
+			if (!e) {
+				return;
+			}
 			e.classList.remove('in');
 			e.classList.add('out');
 		}, 900);
 
 		setTimeout(() => {
-			ReactDOM.unmountComponentAtNode(document.getElementById('overlay'));
+			const overlay = document.getElementById('overlay');
+			if (overlay) {
+				ReactDOM.unmountComponentAtNode(overlay);
+			}
 		}, 1200);
 	});
 

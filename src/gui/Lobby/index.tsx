@@ -18,7 +18,7 @@ export default function Lobby(props: LobbyProps): JSX.Element {
 		onRoomEnter,
 	} = props;
 
-	const roomInput = React.useRef<HTMLInputElement>();
+	const roomInput = React.useRef<HTMLInputElement>(null);
 
 	async function createRoom(): Promise<void> {
 		const room = await client.createRoom();
@@ -59,7 +59,7 @@ export default function Lobby(props: LobbyProps): JSX.Element {
 				<button type="button" onClick={createRoom}>创建房间</button>
 			</div>
 			<div className="enter-panel">
-				<input type="number" id="room-number" placeholder="房间号" />
+				<input type="number" id="room-number" placeholder="房间号" ref={roomInput} />
 				<button type="button" onClick={enterRoom}>加入房间</button>
 			</div>
 		</div>

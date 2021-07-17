@@ -8,7 +8,7 @@ module.exports = function config(env, argv) {
 	return {
 		mode,
 		entry: {
-			app: './src/index.js',
+			app: './src/index.tsx',
 		},
 		output: {
 			filename: 'static/[name].js',

@@ -7,7 +7,7 @@ import { ContextListener } from '@karuta/protocol';
 import NameCard from '../game/NameCard';
 
 export default class NameCardHandler implements ContextListener {
-	readonly context: Context.NameCard;
+	readonly context = Context.NameCard;
 
 	protected readonly cards: NameCard[];
 
@@ -15,19 +15,22 @@ export default class NameCardHandler implements ContextListener {
 		this.cards = cards;
 	}
 
-	put(params: Partial<CardModel>): void {
-		const { index } = params;
-		const card = this.cards[index];
+	put(params: unknown): void {
+		const update = params as Partial<CardModel>;
+		const { index } = update;
+		const card = typeof index === 'number' ? this.cards[index] : undefined;
 		if (!card) {
 			return;
 		}
 
-		const { color } = params;
-		if (color) {
+		const { color } = update;
+		if (typeof color === 'number') {
 			card.setColor(color);
 		}
 
-		const { revealed } = params;
-		card.setRevealed(revealed);
+		const { revealed } = update;
+		if (typeof revealed === 'boolean') {
+			card.setRevealed(revealed);
+		}
 	}
 }

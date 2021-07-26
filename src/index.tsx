@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Client from '@karuta/client';
 
-import Client from './game/Client';
-import Lobby from './gui/Lobby';
+import App from './gui';
 
 import './index.scss';
 
@@ -26,6 +26,7 @@ const client = new Client();
 (async function main(): Promise<void> {
 	try {
 		await client.connect(serverUrl);
+		await client.login();
 	} catch (error) {
 		showMessage('连接服务器失败。');
 		return;
@@ -33,7 +34,7 @@ const client = new Client();
 
 	showMessage('');
 	ReactDOM.render(
-		<Lobby client={client} />,
+		<App client={client} />,
 		document.getElementById('root'),
 	);
 }());

@@ -1,9 +1,8 @@
 import React from 'react';
+import Client from '@karuta/client';
 
 import { makeToast } from '../component/Toast';
-
 import Room from '../../game/Room';
-import Client from '../../game/Client';
 
 import './index.scss';
 
@@ -21,7 +20,8 @@ export default function Lobby(props: LobbyProps): JSX.Element {
 	const roomInput = React.useRef<HTMLInputElement>(null);
 
 	async function createRoom(): Promise<void> {
-		const room = await client.createRoom();
+		const room = new Room(client);
+		await room.create();
 		if (onRoomEnter) {
 			setTimeout(onRoomEnter, 0, room);
 		}
@@ -41,8 +41,9 @@ export default function Lobby(props: LobbyProps): JSX.Element {
 			return;
 		}
 
-		const room = await client.enterRoom(roomId);
-		if (room) {
+		const room = new Room(client);
+		const success = await room.enter(roomId);
+		if (success) {
 			if (onRoomEnter) {
 				setTimeout(onRoomEnter, 0, room);
 			}

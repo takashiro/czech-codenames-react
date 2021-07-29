@@ -20,12 +20,11 @@ export default class NameCardsHandler implements ContextListener {
 			return;
 		}
 
-		const cardModels = (params as Partial<CardModel>[]);
+		const cardModels = params as Partial<CardModel>[];
 		if (cardModels.length !== 25) {
 			return;
 		}
 
-		const cards = cardModels.map((model, i) => new NameCard(i, model.name || '', model.color || Color.Unknown));
-		this.room.setNameCards(cards);
+		this.room.setNameCardModels(cardModels);
 	}
 }

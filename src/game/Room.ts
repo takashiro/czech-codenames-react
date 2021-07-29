@@ -35,13 +35,23 @@ class Room extends BasicRoom {
 	constructor(client: Client) {
 		super(client);
 		this.driver = new Driver<void>(this.client, '@karuta/codenames');
+
+		client.on(new NameCardHandler(this.cards));
+		client.on(new NameCardsHandler(this));
 	}
 
-	async prepare(): Promise<void> {
-		this.client.on(new NameCardHandler(this.cards));
-		this.client.on(new NameCardsHandler(this));
+	async create(): Promise<void> {
+		await super.create();
 		await this.driver.load();
 		await this.refreshNameCards();
+	}
+
+	async enter(id: number): Promise<boolean> {
+		const success = await super.enter(id);
+		if (success) {
+			await this.fetchNameCards();
+		}
+		return success;
 	}
 
 	getNameCards(): NameCard[] {
@@ -53,16 +63,21 @@ class Room extends BasicRoom {
 		this.emit('cardsChanged', cards);
 	}
 
+	setNameCardModels(models: Partial<CardModel>[]): void {
+		const cards = models.map((model, i) => new NameCard(i, model.name || '', model.color));
+		this.setNameCards(cards);
+	}
+
 	async refreshNameCards(): Promise<void> {
 		await this.client.post(Context.NameCards);
 	}
 
-	async fetchNameCards(): Promise<Partial<CardModel>[]> {
-		const cards = await this.client.get(Context.NameCards);
-		if (!Array.isArray(cards)) {
+	async fetchNameCards(): Promise<void> {
+		const models = await this.client.get(Context.NameCards) as Partial<CardModel>[];
+		if (!Array.isArray(models)) {
 			throw new Error('Unexpected cards. It should be an array.');
 		}
-		return cards as Partial<CardModel>[];
+		this.setNameCardModels(models);
 	}
 
 	async flipCard(index: number): Promise<void> {

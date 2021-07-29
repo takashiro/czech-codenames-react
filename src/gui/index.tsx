@@ -14,8 +14,7 @@ export default function App(props: AppProps): JSX.Element {
 	const { client } = props;
 	const [room, setRoom] = React.useState<RoomModel | undefined>(undefined);
 
-	async function enterRoom(model: RoomModel): Promise<void> {
-		await model.prepare();
+	function enterRoom(model: RoomModel): void {
 		setRoom(model);
 	}
 

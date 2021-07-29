@@ -3,4 +3,12 @@
 	margin: 34px auto;
 	border-collapse: separate;
 	border-spacing: 7px;
+
+	&.col5 {
+		width: 340px;
+
+		button {
+			margin: 4px;
+		}
+	}
 }

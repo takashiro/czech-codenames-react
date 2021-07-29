@@ -4,21 +4,21 @@ import {
 } from '@karuta/codenames-core';
 import { ContextListener } from '@karuta/protocol';
 
-import NameCard from '../game/NameCard';
+import Room from '../game/Room';
 
 export default class NameCardHandler implements ContextListener {
 	readonly context = Context.NameCard;
 
-	protected readonly cards: NameCard[];
+	protected readonly room: Room;
 
-	constructor(cards: NameCard[]) {
-		this.cards = cards;
+	constructor(room: Room) {
+		this.room = room;
 	}
 
-	put(params: unknown): void {
+	patch(params: unknown): void {
 		const update = params as Partial<CardModel>;
 		const { index } = update;
-		const card = typeof index === 'number' ? this.cards[index] : undefined;
+		const card = typeof index === 'number' ? this.room.getNameCard(index) : undefined;
 		if (!card) {
 			return;
 		}

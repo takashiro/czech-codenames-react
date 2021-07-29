@@ -18,6 +18,10 @@ export default function Room(props: RoomProps): JSX.Element {
 		room.refreshNameCards();
 	}
 
+	function flip(index: number): void {
+		room.flipCard(index);
+	}
+
 	return (
 		<div className="room">
 			<div className="info">
@@ -38,6 +42,7 @@ export default function Room(props: RoomProps): JSX.Element {
 			<GameBoard
 				cards={room.getNameCards()}
 				columnNum={5}
+				onFlip={flip}
 			/>
 			<div className="button-area">
 				<button type="button" onClick={refresh}>刷新</button>

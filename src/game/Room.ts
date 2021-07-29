@@ -36,7 +36,7 @@ class Room extends BasicRoom {
 		super(client);
 		this.driver = new Driver<void>(this.client, '@karuta/codenames');
 
-		client.on(new NameCardHandler(this.cards));
+		client.on(new NameCardHandler(this));
 		client.on(new NameCardsHandler(this));
 	}
 
@@ -63,6 +63,10 @@ class Room extends BasicRoom {
 		this.emit('cardsChanged', cards);
 	}
 
+	getNameCard(index: number): NameCard | undefined {
+		return this.cards[index];
+	}
+
 	setNameCardModels(models: Partial<CardModel>[]): void {
 		const cards = models.map((model, i) => new NameCard(i, model.name || '', model.color));
 		this.setNameCards(cards);
@@ -81,7 +85,7 @@ class Room extends BasicRoom {
 	}
 
 	async flipCard(index: number): Promise<void> {
-		await this.client.patch(Context.NameCard, index);
+		await this.client.patch(Context.NameCard, { index });
 	}
 }
 

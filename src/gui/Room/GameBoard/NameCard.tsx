@@ -1,7 +1,8 @@
 import React from 'react';
-import { Color } from '@karuta/codenames-core';
+import classnames from 'classnames';
 
 import CardModel from '../../../game/NameCard';
+import stringifyColor from '../../../util/stringifyColor';
 
 import './NameCard.scss';
 
@@ -44,31 +45,13 @@ export default function NameCard(props: NameCardProps): JSX.Element {
 		}
 	}
 
-	const classNames = ['name-card'];
-
-	switch (color) {
-	case Color.Yellow:
-		classNames.push('yellow');
-		break;
-	case Color.Red:
-		classNames.push('red');
-		break;
-	case Color.Blue:
-		classNames.push('blue');
-		break;
-	case Color.Black:
-		classNames.push('black');
-		break;
-	default:
-		break;
-	}
-
-	if (revealed) {
-		classNames.push('revealed');
-	}
-
 	return (
-		<button type="button" className={classNames.join(' ')} onClick={handleFlip} onKeyDown={handleKeyDown}>
+		<button
+			type="button"
+			className={classnames('name-card', stringifyColor(color), { revealed })}
+			onClick={handleFlip}
+			onKeyDown={handleKeyDown}
+		>
 			<span className="name">{name}</span>
 		</button>
 	);

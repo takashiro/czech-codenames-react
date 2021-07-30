@@ -65,7 +65,7 @@
 		line-height: normal;
 	}
 
-	&.assassin {
+	&.black {
 		@extend %assassin-dark;
 	}
 
@@ -84,7 +84,7 @@
 
 .owner {
 	.name-card.revealed {
-		&.assassin {
+		&.black {
 			@extend %assassin-light;
 		}
 

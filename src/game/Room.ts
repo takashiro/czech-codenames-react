@@ -32,6 +32,8 @@ class Room extends BasicRoom {
 
 	protected driver: Driver<void>;
 
+	protected created = false;
+
 	constructor(client: Client) {
 		super(client);
 		this.driver = new Driver<void>(this.client, '@karuta/codenames');
@@ -40,10 +42,15 @@ class Room extends BasicRoom {
 		client.on(new NameCardsHandler(this));
 	}
 
+	isCreated(): boolean {
+		return this.created;
+	}
+
 	async create(): Promise<void> {
 		await super.create();
 		await this.driver.load();
 		await this.refreshNameCards();
+		this.created = true;
 	}
 
 	async enter(id: number): Promise<boolean> {

@@ -1,4 +1,6 @@
 import React from 'react';
+import classNames from 'classnames';
+import { Color } from '@karuta/codenames-core';
 
 import RoomModel from '../../game/Room';
 
@@ -22,8 +24,10 @@ export default function Room(props: RoomProps): JSX.Element {
 		room.flipCard(index);
 	}
 
+	const owner = room.isCreated();
+
 	return (
-		<div className="room">
+		<div className={classNames('room', { owner })}>
 			<div className="info">
 				房间号
 				{room.getId()}
@@ -31,11 +35,11 @@ export default function Room(props: RoomProps): JSX.Element {
 			<div className="score-panel">
 				<ScoreBoard
 					title="红色阵营"
-					// color={Color.Red}
+					color={Color.Red}
 				/>
 				<ScoreBoard
 					title="蓝色阵营"
-					// color={Color.Blue}
+					color={Color.Blue}
 				/>
 			</div>
 			<div className="current-state" />
@@ -44,9 +48,11 @@ export default function Room(props: RoomProps): JSX.Element {
 				columnNum={5}
 				onFlip={flip}
 			/>
-			<div className="button-area">
-				<button type="button" onClick={refresh}>刷新</button>
-			</div>
+			{owner && (
+				<div className="button-area">
+					<button type="button" onClick={refresh}>刷新</button>
+				</div>
+			)}
 		</div>
 	);
 }

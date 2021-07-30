@@ -28,6 +28,10 @@ It's a small online app to play Codenames.
 
 Running Environment
 -------------------
-1. Nginx
-2. [Karuta Server](https://github.com/takashiro/karuta-node-server)
-3. [Karuta Server Extension](https://github.com/takashiro/karuta-codenames)
+1. [Server](https://github.com/takashiro/czech-codenames-server)
+
+How to Build
+------------
+1. Node.js >= 12.x is required.
+2. Run `npm ci`.
+3. Run `npm start`.

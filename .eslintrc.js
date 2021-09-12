@@ -37,6 +37,10 @@ module.exports = {
 		],
 		'import/no-unresolved': 'off',
 		'no-plusplus': 'off',
+		'no-restricted-syntax': [
+			'error',
+			'WithStatement',
+		],
 		'no-tabs': 'off',
 		'no-use-before-define': 'off',
 		'react/jsx-indent': [

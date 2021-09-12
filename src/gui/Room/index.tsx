@@ -45,10 +45,12 @@ export default function Room(props: RoomProps): JSX.Element {
 				<ScoreBoard
 					title="红色阵营"
 					color={Color.Red}
+					cards={cards}
 				/>
 				<ScoreBoard
 					title="蓝色阵营"
 					color={Color.Blue}
+					cards={cards}
 				/>
 			</div>
 			<div className="current-state" />

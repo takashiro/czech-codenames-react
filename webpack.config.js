@@ -3,6 +3,12 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+/**
+ * Webpack configuration
+ * @param {Record<string, unknown>} env environment variables
+ * @param {Record<string, unknown>} argv command-line arguments
+ * @returns {import('webpack').Configuration} configuration
+ */
 module.exports = function config(env, argv) {
 	const mode = argv && argv.mode === 'development' ? 'development' : 'production';
 	return {
@@ -72,7 +78,7 @@ module.exports = function config(env, argv) {
 		],
 		devtool: mode === 'development' ? 'inline-source-map' : undefined,
 		devServer: {
-			contentBase: path.join(__dirname, 'dist'),
+			static: path.join(__dirname, 'dist'),
 			port: 5261,
 			hot: true,
 		},

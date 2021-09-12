@@ -53,6 +53,7 @@ module.exports = {
 				extensions: ['js', 'tsx'],
 			},
 		],
+		'react/jsx-no-bind': 'off',
 		'react/require-default-props': 'off',
 	},
 	settings: {

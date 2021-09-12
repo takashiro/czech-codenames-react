@@ -17,7 +17,13 @@ export default function Room(props: RoomProps): JSX.Element {
 	const { room } = props;
 
 	const [cards, setCards] = React.useState(room.getNameCards());
-	room.on('cardsChanged', setCards);
+
+	React.useEffect(() => {
+		room.on('cardsChanged', setCards);
+		return () => {
+			room.off('cardsChanged', setCards);
+		};
+	});
 
 	function refresh(): void {
 		room.refreshNameCards();

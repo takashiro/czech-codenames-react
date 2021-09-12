@@ -4,6 +4,13 @@ body {
 	padding: 0;
 	background: #06141d url(../style/pirates.jpg) no-repeat;
 	background-size: 100% auto;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
+	> .main {
+		flex: 1 1 auto;
+	}
 }
 
 body,
@@ -23,6 +30,11 @@ li {
 	list-style: none;
 }
 
+.main {
+	display: flex;
+	flex-direction: column;
+}
+
 header {
 	padding: 48px 0 18px 0;
 	h1 {
@@ -35,13 +47,20 @@ header {
 	}
 }
 
+#overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 #message-box {
 	color: white;
 	text-align: center;
 }
 
 #root {
-	min-height:320px;
+	min-height: 320px;
+	flex: 1 1 auto;
 }
 
 footer {

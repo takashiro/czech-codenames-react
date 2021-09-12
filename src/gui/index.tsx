@@ -14,10 +14,6 @@ export default function App(props: AppProps): JSX.Element {
 	const { client } = props;
 	const [room, setRoom] = React.useState<RoomModel | undefined>(undefined);
 
-	function enterRoom(model: RoomModel): void {
-		setRoom(model);
-	}
-
 	if (room) {
 		return (
 			<Room
@@ -29,7 +25,7 @@ export default function App(props: AppProps): JSX.Element {
 	return (
 		<Lobby
 			client={client}
-			onRoomEnter={enterRoom}
+			onRoomEnter={setRoom}
 		/>
 	);
 }

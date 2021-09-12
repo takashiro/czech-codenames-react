@@ -16,6 +16,9 @@ interface RoomProps {
 export default function Room(props: RoomProps): JSX.Element {
 	const { room } = props;
 
+	const [cards, setCards] = React.useState(room.getNameCards());
+	room.on('cardsChanged', setCards);
+
 	function refresh(): void {
 		room.refreshNameCards();
 	}
@@ -44,7 +47,7 @@ export default function Room(props: RoomProps): JSX.Element {
 			</div>
 			<div className="current-state" />
 			<GameBoard
-				cards={room.getNameCards()}
+				cards={cards}
 				columnNum={5}
 				onFlip={flip}
 			/>

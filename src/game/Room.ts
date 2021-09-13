@@ -75,7 +75,7 @@ class Room extends BasicRoom {
 	}
 
 	setNameCardModels(models: Partial<CardModel>[]): void {
-		const cards = models.map((model, i) => new NameCard(i, model.name || '', model.color));
+		const cards = models.map((model, i) => new NameCard(i, model.name || '', model.color, model.revealed));
 		this.setNameCards(cards);
 	}
 

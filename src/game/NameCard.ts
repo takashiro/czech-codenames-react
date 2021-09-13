@@ -30,14 +30,15 @@ class NameCard extends EventEmitter {
 
 	protected color: Color;
 
-	protected revealed = false;
+	protected revealed: boolean;
 
-	constructor(index: number, name: string, color = Color.Unknown) {
+	constructor(index: number, name: string, color = Color.Unknown, revealed = false) {
 		super();
 
 		this.index = index;
 		this.name = name;
 		this.color = color;
+		this.revealed = revealed;
 	}
 
 	getKey(): number {

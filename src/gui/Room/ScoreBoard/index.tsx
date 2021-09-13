@@ -20,16 +20,20 @@ export default function ScoreBoard(props: ScoreBoardProps): JSX.Element {
 		cards,
 	} = props;
 
-	const [num, setNum] = React.useState(0);
-
-	function updateProgress(): void {
+	function countCards(): number {
 		let count = 0;
 		for (const card of cards) {
 			if (card.getColor() === color && card.isRevealed()) {
 				count++;
 			}
 		}
-		setNum(count);
+		return count;
+	}
+
+	const [num, setNum] = React.useState(countCards());
+
+	function updateProgress(): void {
+		setNum(countCards());
 	}
 
 	React.useEffect(() => {

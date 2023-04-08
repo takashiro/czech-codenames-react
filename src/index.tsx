@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Client from '@karuta/client';
 
 import App from './gui';
@@ -33,8 +33,6 @@ const client = new Client();
 	}
 
 	showMessage('');
-	ReactDOM.render(
-		<App client={client} />,
-		document.getElementById('root'),
-	);
+	const root = createRoot(document.getElementById('root') as HTMLElement);
+	root.render(<App client={client} />);
 }());

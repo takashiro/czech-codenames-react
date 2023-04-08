@@ -32,6 +32,6 @@ Running Environment
 
 How to Build
 ------------
-1. Node.js >= 12.x is required.
+1. Node.js >= 18.x is required.
 2. Run `npm ci`.
 3. Run `npm start`.
